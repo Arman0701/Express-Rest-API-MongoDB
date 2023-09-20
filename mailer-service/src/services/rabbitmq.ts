@@ -51,10 +51,6 @@ export class RabbitMQ {
 				queue,
 				(message) => {
 					if (message) {
-						// console.log(
-						// 	" [x] Received '%s'",
-						// 	JSON.parse(message.content.toString())
-						// )
 						Mailing.sendEmail(
 							JSON.parse(message.content.toString())
 						)

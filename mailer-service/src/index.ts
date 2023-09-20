@@ -14,12 +14,10 @@ app.get("/", (req, res) => {
 })
 
 app.get("/receiver", (req, res) => {
-	rabbitmqInstance.receiver()
-	res.send(`
-	<a href="/receiver">Receiver</a>
-	`)
+	res.send("Hello world from NodeJS!")
 })
 
 app.listen(port, () => {
+	rabbitmqInstance.receiver()
 	console.log(`Server has been started on port ${port}...`)
 })

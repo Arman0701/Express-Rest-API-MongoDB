@@ -4,13 +4,13 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"build:start": "npm run build && npm start",
-		"docker:u": "docker compose up",
-		"docker:d": "docker compose down",
-		"build": "tsc",
-		"start": "node ./dist/index.js",
-		"watch": "tsc --watch",
-		"dev": "nodemon -q dist/index.js"
+		"build:start:all": "concurrently \"cd mailer-service && npm run docker:start\" \"cd node-mongodb && npm run docker:start",
+		"docker:u:all": "concurrently \"cd mailer-service && npm run docker:u\" \"cd node-mongodb && npm run docker:u",
+		"docker:d:all": "concurrently \"cd mailer-service && npm run docker:d\" \"cd node-mongodb && npm run docker:d",
+		"build:all": "concurrently \"cd mailer-service && npm run build\" \"cd node-mongodb && npm run build",
+		"start:all": "concurrently \"cd mailer-service && npm run start\" \"cd node-mongodb && npm run start",
+		"watch:all": "concurrently \"cd mailer-service && npm run watch\" \"cd node-mongodb && npm run watch",
+		"dev:all": "concurrently \"cd mailer-service && npm run dev\" \"cd node-mongodb && npm run dev"
 	},
 	"repository": {
 		"type": "git",
