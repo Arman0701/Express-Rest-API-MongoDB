@@ -1,0 +1,26 @@
+{
+	"name": "rest_api",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build:start": "npm run build && npm start",
+		"docker:u": "docker compose up",
+		"docker:d": "docker compose down",
+		"build": "tsc",
+		"start": "node ./dist/index.js",
+		"watch": "tsc --watch",
+		"dev": "nodemon -q dist/index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Arman0701/Express-Rest-API-MongoDB.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Arman0701/Express-Rest-API-MongoDB/issues"
+	},
+	"homepage": "https://github.com/Arman0701/Express-Rest-API-MongoDB#readme"
+}
