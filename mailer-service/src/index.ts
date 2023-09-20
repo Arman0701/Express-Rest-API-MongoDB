@@ -1,4 +1,3 @@
-console.log("==================================================")
 import express from "express"
 import { rabbitmqInstance } from "./config/rabbitmq.config"
 import { config } from "dotenv"
@@ -8,12 +7,6 @@ const app = express()
 const port = process.env.PORT
 
 app.get("/", (req, res) => {
-	res.send(`
-	<a href="/receiver">Receiver</a>
-	`)
-})
-
-app.get("/receiver", (req, res) => {
 	res.send("Hello world from NodeJS!")
 })
 
