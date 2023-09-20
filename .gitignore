@@ -5,3 +5,5 @@ node-mongodb/dist
 mailer-service/.env
 mailer-service/node_modules
 mailer-service/dist
+
+node_modules

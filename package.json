@@ -22,5 +22,8 @@
 	"bugs": {
 		"url": "https://github.com/Arman0701/Express-Rest-API-MongoDB/issues"
 	},
-	"homepage": "https://github.com/Arman0701/Express-Rest-API-MongoDB#readme"
+	"homepage": "https://github.com/Arman0701/Express-Rest-API-MongoDB#readme",
+	"dependencies": {
+		"concurrently": "^8.2.1"
+	}
 }
