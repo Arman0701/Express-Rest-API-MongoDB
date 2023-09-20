@@ -1,0 +1,7 @@
+node-mongodb/.env
+node-mongodb/node_modules
+node-mongodb/dist
+
+mailer-service/.env
+mailer-service/node_modules
+mailer-service/dist
