@@ -5,6 +5,7 @@ import {
 	Post,
 	Patch,
 	Delete,
+	Body,
 } from "routing-controllers"
 import { IBody, IUser, UUserReturnType } from "../types/models"
 import { Service } from "typedi"
@@ -38,7 +39,7 @@ export class UserController {
 	}
 
 	@Post("/")
-	async create({ username, email }: IUser): UUserReturnType {
+	async create(@Body() { username, email }: IUser): UUserReturnType {
 		return this.userService.create({
 			username,
 			email,
@@ -46,12 +47,15 @@ export class UserController {
 	}
 
 	@Patch("/:id")
-	async updateById(body: IBody, id: string): UUserReturnType {
+	async updateById(
+		@Body() body: IBody,
+		@Param("id") id: string
+	): UUserReturnType {
 		return this.userService.updateById(body, id)
 	}
 
 	@Delete("/:id")
-	async removeById(id: string): UUserReturnType {
+	async removeById(@Param("id") id: string): UUserReturnType {
 		return this.userService.removeById(id)
 	}
 }

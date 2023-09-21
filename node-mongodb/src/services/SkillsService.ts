@@ -27,7 +27,7 @@ export class SkillsService {
 		if (!name) return Error.Skill().name404()
 
 		const newSkill = new SkillModel({
-			name,
+			name, 
 			image_url,
 			userID,
 		})

@@ -5,6 +5,7 @@ import {
 	Post,
 	Patch,
 	Delete,
+	Body,
 } from "routing-controllers"
 import { IBody, ISkill, USkillReturnType } from "../types/models"
 import { Inject, Service } from "typedi"
@@ -32,16 +33,18 @@ export class SkillController {
 	}
 
 	@Post("/")
-	async create({ name, image_url, userID }: ISkill): USkillReturnType {
-		return this.skillsService.create({
-			name,
-			image_url,
-			userID,
-		})
+	async create(
+		@Body() userFields: ISkill
+	): USkillReturnType {
+		console.log("userFields ::: ", userFields)
+		return this.skillsService.create(userFields)
 	}
 
 	@Patch("/:id")
-	async updateById(body: IBody, id: string): USkillReturnType {
+	async updateById(
+		@Body() body: IBody,
+		@Param("id") id: string
+	): USkillReturnType {
 		return this.skillsService.updateById(body, id)
 	}
 

@@ -1,4 +1,13 @@
-import { Controller, Param, Get, Post, Put, Delete } from "routing-controllers"
+import {
+	Controller,
+	Param,
+	Get,
+	Post,
+	Put,
+	Delete,
+	Body,
+	Patch,
+} from "routing-controllers"
 import { IBody, IProject, UProjectReturnType } from "../types/models"
 import { ProjectsService } from "../services/ProjectsService"
 import { Service } from "typedi"
@@ -25,7 +34,9 @@ export class ProjectController {
 	}
 
 	@Post("/")
-	async create({ name, description, userID }: IProject): UProjectReturnType {
+	async create(
+		@Body() { name, description, userID }: IProject
+	): UProjectReturnType {
 		return this.projectsService.create({
 			name,
 			description,
@@ -33,8 +44,11 @@ export class ProjectController {
 		})
 	}
 
-	@Put("/:id")
-	async updateById(body: IBody, id: string): UProjectReturnType {
+	@Patch("/:id")
+	async updateById(
+		@Body() body: IBody,
+		@Param("id") id: string
+	): UProjectReturnType {
 		return this.projectsService.updateById(body, id)
 	}
 
