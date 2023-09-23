@@ -2,9 +2,14 @@ import mongoose from "mongoose"
 import dotenv from "dotenv"
 dotenv.config()
 
+import { configure } from "../utils/configureApp"
+
 export const makeConn = async () => {
 	try {
-		await mongoose.connect(process.env.MDB_URI!)
+		const uri = configure.get("db.mdb_uri")
+		if (uri) {
+			await mongoose.connect(String(uri))
+		}
 	} catch (e) {
 		console.log(e)
 	}

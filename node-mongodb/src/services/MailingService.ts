@@ -25,9 +25,7 @@ export class MailingService {
 				throw new Error("Token refresh failed")
 			}
 
-			const newAccessToken = response.data.access_token
-			console.log("New Access Token:", newAccessToken)
-			return newAccessToken
+			return response.data.access_token
 		} catch (error) {
 			console.error("Token refresh error:")
 		}

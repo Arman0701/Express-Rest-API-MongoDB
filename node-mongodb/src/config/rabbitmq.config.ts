@@ -1,5 +1,8 @@
 import { RabbitMQ } from "../services/RabbitMQ"
-import { config } from "dotenv"
-config()
+import { configure } from "../utils/configureApp"
 
-export const rabbitmqInstance = new RabbitMQ("messages", process.env.AMQP_HOST!)
+const host = configure.get("broker_service.amqp_host")
+export const rabbitmqInstance = new RabbitMQ(
+	"messages",
+	host ? String(host) : ""
+)

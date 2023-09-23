@@ -1,13 +1,15 @@
 import "reflect-metadata"
 import express, { NextFunction, Request, Response } from "express"
 import { makeConn } from "./config/database"
-import {
-	useContainer,
-	useExpressServer,
-} from "routing-controllers"
+import { useContainer, useExpressServer } from "routing-controllers"
 import Container from "typedi"
+import { config } from "dotenv"
+import { configure, configureApp } from "./utils/configureApp"
+config()
+configureApp()
 
-const PORT = process.env.PORT
+
+const PORT = configure.get("server.port")
 useContainer(Container)
 
 const app = express()
