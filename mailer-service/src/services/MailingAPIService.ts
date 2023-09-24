@@ -7,24 +7,21 @@ config()
 configureApp()
 
 export class MailingAPIService {
-	private auth: MailingAPIAuth
+	// private auth: MailingAPIAuth
 	access_token: string
 
 	constructor() {
 		this.access_token = String(configure.get("mailer.access_token"))
-		this.auth = {
-			Authorization: `Bearer ${this.access_token}`,
-			"Content-Type": "application/json",
-		}
+		// this.auth = {
+		// 	Authorization: `Bearer ${this.access_token}`,
+		// 	"Content-Type": "application/json",
+		// }
 	}
 
 	async sendMessage({ from, to, subject, body }: EmailOptions) {
 		const emailMessage = {
 			raw: Buffer.from(
-				`To: ${to}\r\n` +
-					`Subject: ${subject}\r\n` +
-					`\r\n` +
-					`${body}`,
+				`To: ${to}\r\n` + `Subject: ${subject}\r\n` + `\r\n` + body,
 				"utf-8"
 			).toString("base64"),
 		}

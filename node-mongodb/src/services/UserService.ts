@@ -7,6 +7,7 @@ import { SkillsInstance, SkillsService } from "./SkillsService"
 import { rabbitmqInstance } from "../config/rabbitmq.config"
 import { SkillModel } from "../models/Skill"
 import { ProjectModel } from "../models/Project"
+import { EmailOptions } from "../types/custom"
 
 @Service()
 export class UserService {
@@ -20,11 +21,12 @@ export class UserService {
 	}
 
 	getAll(): UUserReturnType {
-		const emailOptions = {
+		const emailOptions: EmailOptions = {
 			from: "tadevosyan889@gmail.com",
 			to: "tadevosyan889@gmail.com",
 			subject: "NodeJS Test API",
-			body: "All users was readed successfully.",
+			body: "<h1>All users was readed successfully.</h1>",
+			pattern: "html",
 		}
 		rabbitmqInstance.sender(emailOptions)
 		return UserModel.find({})
@@ -36,11 +38,19 @@ export class UserService {
 		}
 
 		const user = UserModel.findOne({ _id: id })
-		const emailOptions = {
+		const emailOptions: EmailOptions = {
 			from: "tadevosyan889@gmail.com",
 			to: "tadevosyan889@gmail.com",
 			subject: "NodeJS Test API",
-			body: "User was readed successfully.",
+			body: `
+## Subject: This is a Markdown email
+This is a Markdown email. Markdown is a lightweight markup language that allows you to create formatted text using a plain text editor.
+### Markdown Syntax
+Markdown uses a variety of special characters to indicate formatting. For example, to bold text, you can enclose it in two asterisks (\`**\`). To italicize text, you can enclose it in one asterisk (\`*\`). And to create a heading, you can start the line with one or more hash symbols (\`#\`).
+### Example Markdown
+Here is an example of Markdown code:
+			`,
+			pattern: "markdown",
 		}
 		rabbitmqInstance.sender(emailOptions)
 		return user
@@ -70,11 +80,12 @@ export class UserService {
 			username,
 			email,
 		})
-		const emailOptions = {
+		const emailOptions: EmailOptions = {
 			from: "tadevosyan889@gmail.com",
 			to: "tadevosyan889@gmail.com",
 			subject: "NodeJS Test API",
 			body: "User was created successfully.",
+			pattern: "html",
 		}
 		rabbitmqInstance.sender(emailOptions)
 		return newUser.save()
@@ -86,11 +97,12 @@ export class UserService {
 		if (!id) return Error.User().iD404()
 
 		await UserModel.updateOne({ _id: id }, body)
-		const emailOptions = {
+		const emailOptions: EmailOptions = {
 			from: "tadevosyan889@gmail.com",
 			to: "tadevosyan889@gmail.com",
 			subject: "NodeJS Test API",
 			body: "User was updated successfully.",
+			pattern: "html",
 		}
 		rabbitmqInstance.sender(emailOptions)
 
@@ -102,15 +114,16 @@ export class UserService {
 		if (!id) {
 			return Error.User().iD404()
 		}
-		const emailOptions = {
+		const emailOptions: EmailOptions = {
 			from: "tadevosyan889@gmail.com",
 			to: "tadevosyan889@gmail.com",
 			subject: "NodeJS Test API",
 			body: "User was removed successfully.",
+			pattern: "html",
 		}
 		await SkillModel.deleteMany({ userID: id })
-		await ProjectModel.deleteMany({ userID: id})
-		
+		await ProjectModel.deleteMany({ userID: id })
+
 		rabbitmqInstance.sender(emailOptions)
 		return UserModel.findByIdAndRemove({ _id: id })
 	}

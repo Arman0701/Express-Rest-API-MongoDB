@@ -5,6 +5,10 @@ export interface EmailOptions {
 	body: string
 }
 
+export interface EmailMessageType extends EmailOptions {
+	pattern: "html" | "markdown" | "text"
+}
+
 export interface IConfig {
 	[key: string]: string
 }
