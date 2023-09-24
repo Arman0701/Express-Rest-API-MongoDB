@@ -4,11 +4,6 @@ import { configure, configureApp } from "../utils/configureApp"
 import { config } from "dotenv"
 config()
 configureApp()
-configureApp()
-configureApp()
-configureApp()
-configureApp()
-configureApp()
 
 export class MailingErrorHandler {
 	private codes: MailingErrHandlerCodes
