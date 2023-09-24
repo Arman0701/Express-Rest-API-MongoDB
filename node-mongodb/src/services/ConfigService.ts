@@ -23,9 +23,6 @@ export class ConfigService {
 		const pathArray: string[] = key.split(".")
 		let currentObject: IConfig = this.config
 		for (const pathElement of pathArray) {
-			if (!currentObject.hasOwnProperty(pathElement)) {
-				return undefined
-			}
 			currentObject = currentObject[pathElement] as any
 		}
 		return currentObject

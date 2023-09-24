@@ -8,7 +8,7 @@ import {
 	Body,
 } from "routing-controllers"
 import { IBody, ISkill, USkillReturnType } from "../types/models"
-import { Inject, Service } from "typedi"
+import { Service } from "typedi"
 import { SkillsService } from "../services/SkillsService"
 
 @Controller("/skill", {
@@ -33,10 +33,7 @@ export class SkillController {
 	}
 
 	@Post("/")
-	async create(
-		@Body() userFields: ISkill
-	): USkillReturnType {
-		console.log("userFields ::: ", userFields)
+	async create(@Body() userFields: ISkill): USkillReturnType {
 		return this.skillsService.create(userFields)
 	}
 

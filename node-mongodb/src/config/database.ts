@@ -1,8 +1,8 @@
 import mongoose from "mongoose"
 import dotenv from "dotenv"
+import { configure, configureApp } from "../utils/configureApp"
 dotenv.config()
-
-import { configure } from "../utils/configureApp"
+configureApp()
 
 export const makeConn = async () => {
 	try {

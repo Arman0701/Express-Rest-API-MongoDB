@@ -8,7 +8,6 @@ import { configure, configureApp } from "./utils/configureApp"
 config()
 configureApp()
 
-
 const PORT = configure.get("server.port")
 useContainer(Container)
 

@@ -79,9 +79,6 @@ export class UserService {
 	}
 
 	async updateById(body: IBody, id: string): UUserReturnType {
-		console.log("id ::: ", id)
-		console.log("body ::: ", body)
-		
 		const validBody = Object.values(body).every((value) => Boolean(value))
 		if (!body || !validBody) return Error.User().body404()
 		if (!id) return Error.User().iD404()
