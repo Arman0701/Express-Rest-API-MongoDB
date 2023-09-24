@@ -21,7 +21,10 @@ export class MailingAPIService {
 	async sendMessage({ from, to, subject, body }: EmailOptions) {
 		const emailMessage = {
 			raw: Buffer.from(
-				`To: ${to}\r\n` + `Subject: ${subject}\r\n` + `\r\n` + body,
+				`To: ${to}\r\n` +
+					`Subject: ${subject}\r\n` +
+					`\r\n` +
+					`${body}`,
 				"utf-8"
 			).toString("base64"),
 		}

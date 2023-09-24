@@ -9,8 +9,7 @@ export interface EmailOptions {
 	to: string
 	from: string
 	subject: string
-	body: any | number | bigint
-	pattern: "html" | "markdown" | "text"
+	body: string
 }
 
 export interface IConfig {

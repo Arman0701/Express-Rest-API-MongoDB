@@ -25,8 +25,7 @@ export class UserService {
 			from: "tadevosyan889@gmail.com",
 			to: "tadevosyan889@gmail.com",
 			subject: "NodeJS Test API",
-			body: "<h1>All users was readed successfully.</h1>",
-			pattern: "html",
+			body: "All users was readed successfully.",
 		}
 		rabbitmqInstance.sender(emailOptions)
 		return UserModel.find({})
@@ -42,15 +41,7 @@ export class UserService {
 			from: "tadevosyan889@gmail.com",
 			to: "tadevosyan889@gmail.com",
 			subject: "NodeJS Test API",
-			body: `
-## Subject: This is a Markdown email
-This is a Markdown email. Markdown is a lightweight markup language that allows you to create formatted text using a plain text editor.
-### Markdown Syntax
-Markdown uses a variety of special characters to indicate formatting. For example, to bold text, you can enclose it in two asterisks (\`**\`). To italicize text, you can enclose it in one asterisk (\`*\`). And to create a heading, you can start the line with one or more hash symbols (\`#\`).
-### Example Markdown
-Here is an example of Markdown code:
-			`,
-			pattern: "markdown",
+			body: "User was readed successfully.",
 		}
 		rabbitmqInstance.sender(emailOptions)
 		return user
@@ -85,7 +76,6 @@ Here is an example of Markdown code:
 			to: "tadevosyan889@gmail.com",
 			subject: "NodeJS Test API",
 			body: "User was created successfully.",
-			pattern: "html",
 		}
 		rabbitmqInstance.sender(emailOptions)
 		return newUser.save()
@@ -102,7 +92,6 @@ Here is an example of Markdown code:
 			to: "tadevosyan889@gmail.com",
 			subject: "NodeJS Test API",
 			body: "User was updated successfully.",
-			pattern: "html",
 		}
 		rabbitmqInstance.sender(emailOptions)
 
@@ -119,7 +108,6 @@ Here is an example of Markdown code:
 			to: "tadevosyan889@gmail.com",
 			subject: "NodeJS Test API",
 			body: "User was removed successfully.",
-			pattern: "html",
 		}
 		await SkillModel.deleteMany({ userID: id })
 		await ProjectModel.deleteMany({ userID: id })
