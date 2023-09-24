@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose"
+import { UserModel } from "./User"
 
 const schema = new Schema({
 	name: {
@@ -11,8 +12,16 @@ const schema = new Schema({
 		required: true,
 	},
 	userID: {
-		type: String,
+		type: Schema.Types.ObjectId,
+		ref: "User",
 		required: true,
+		validate: {
+			validator: async function (v: string) {
+				const user = await UserModel.findById(v)
+				return user !== null
+			},
+			message: "Invalid user ID",
+		},
 	},
 })
 
