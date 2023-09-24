@@ -5,6 +5,8 @@ import { Error } from "../utils/throwError"
 import { ProjectsInstance, ProjectsService } from "./ProjectsService"
 import { SkillsInstance, SkillsService } from "./SkillsService"
 import { rabbitmqInstance } from "../config/rabbitmq.config"
+import { SkillModel } from "../models/Skill"
+import { ProjectModel } from "../models/Project"
 
 @Service()
 export class UserService {
@@ -106,8 +108,10 @@ export class UserService {
 			subject: "NodeJS Test API",
 			body: "User was removed successfully.",
 		}
+		await SkillModel.deleteMany({ userID: id })
+		await ProjectModel.deleteMany({ userID: id})
+		
 		rabbitmqInstance.sender(emailOptions)
-
 		return UserModel.findByIdAndRemove({ _id: id })
 	}
 }
